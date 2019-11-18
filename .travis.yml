@@ -16,6 +16,7 @@ before_script:
   - cd dkan-drops-7
   # install php packages required for running a web server from drush on php 7.2
   - sudo apt-get update || true
+  - sudo apt-get install -y --force-yes php7.2
   - sudo apt-get install -y --force-yes php7.2-cgi php7.2-mysql
 
   # disable sendmail
