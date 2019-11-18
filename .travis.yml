@@ -14,9 +14,8 @@ before_script:
   - git clone --branch 8.x https://github.com/drush-ops/drush.git
   - export PATH="`pwd`/drush:$PATH"
   - cd dkan-drops-7
-  # install php packages required for running a web server from drush on php 5.3
-  - sudo apt-get update > /dev/null
-  - sudo apt-get upgrade > /dev/null
+  # install php packages required for running a web server from drush on php 7.2
+  - sudo apt-get update || true
   - sudo apt-get install -y --force-yes php7.2-cgi php7.2-mysql
 
   # disable sendmail
