@@ -3,6 +3,9 @@ language: php
 php:
   - '7.2'
 
+services:
+  - mysql
+
 mysql:
   database: dkan_drops_test
   username: root
