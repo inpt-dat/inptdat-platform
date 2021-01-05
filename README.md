@@ -1,69 +1,32 @@
-# Fully Made Version of DKAN 
-This is a version of DKAN that has already been "made" with drush make. It includes Drupal core as well as the DKAN installation profile which can be found in "profiles/dkan".
+# INPTDAT
 
-To install, follow the same directions as Drupal core: https://www.drupal.org/documentation/install
+The INterdisciplinary Plasma Technology DATa platform INPTDAT is an open source research data repository build on top of the Open Data Platform [DKAN](https://getdkan.org). Instances of INPTDAT are currently operated by [Leibniz Institute for Plasma Science and Technology (INP)](https://www.inptdat.de) and the [Research Department Plasmas with Complex Interactions](https://rdpcidat.rub.de) at Ruhr-Universität Bochum.
 
-See the main DKAN repository for further instructions, support, and community: http://github.com/nucivic/dkan
+## Features
 
-# DKAN on Pantheon
+INPTDAT extends the fully made [Drupal 7 version of DKAN](https://github.com/GetDKAN/dkan-drops-7) by the following features:
 
-This is a fork based on [Pantheon DROPs](https://github.com/pantheon-systems/drops-7)
+* Addition of plasma specific metadata fields to the dataset content type for implementation of the plasma metadata schema, Plasma-MDS. 
+* Plasma specific topics for thematic selection of content.
 
-## How to update Drupal Drop from Pantheon Git Repository
+INPTDAT may be used as a basis for other institutional repositories to support the publication and linking of research data in the plasma community in accordance with unified (meta)data models supporting the [FAIR Data Principles](https://www.go-fair.org/fair-principles/) and data driven plasma science. Individual research data repositories implementing the plasma metadata schema, Plasma-MDS and providing appropriate APIs for metadata harvesting will be linked together at the central INPTDAT instance at https://www.inptdat.de.
 
-Just for the first time, add the pantheon base drop repo as a remote
-```bash
-git remote add pantheon https://github.com/pantheon-systems/drops-7.git
-```
+## Installation
 
-Any time you want to integrate their changes into this repo
+The installation of the data platform is analogous to the installation of DKAN. Hence, follow these steps to deploy INPTDAT:
 
-```bash
-# Make a branch so we can test if their work pass our testing
-git checkout -b updating_from_pantheon_drops
-# Pull their master into your branch (solve conflicts if any)
-git merge pantheon/master -X theirs
-# Push changes and wait for travis to run the build on the 'updating_from_pantheon_drops' branch.  
-git push origin updating_from_pantheon_drops
-```
+* Create the database following the [Drupal standard procedure](https://www.drupal.org/docs/7/install/step-2-create-the-database).
+* Download or clone the INPTDAT repository.
+* Follow the [DKAN base installation](https://dkan.readthedocs.io/en/latest/installation/basic.html#installation) instructions to install INPTDAT.
 
-Fix any issues with the build (if any) pushing commits. When everything is ok squash all your fix commits into one. Then:
+### Upgrading INPTDAT
 
-```bash
-# Checkout master
-git checkout master
-# Rebase changes from your branch
-git rebase updating_from_pantheon_drops
-# Push
-git push origin master
-# Delete integration branch
-git push origin :updating_from_pantheon_drops
-```
+Follow the [DKAN basic upgrade](https://dkan.readthedocs.io/en/latest/introduction/maintaining.html#basic-upgrades) instructions to update INPTDAT. The INPTDAT specific code is maintained separated from the DKAN base code in the `sites` folder to avoid overwriting. Note that some incompatibilities may arise if the DKAN version is separately updated. Use this repository to benefit from updates tested for compatibility with the INPTDAT implementation.
 
-## How to update dkan profile
+## License
 
-```bash
-# Make a branch so we can test the travis build sep
-git checkout -b rebuilding_dkan_profile
-# Run dkan update script
-cd scripts
-./rebuild-dkan.sh
-# Add, Commit, Push and check the travis build for the 'rebuilding_dkan_profile' branch
-git add ../profiles/dkan -A
-git commit -m "Rebuilding dkan"
-git push origin rebuilding_dkan_profile
-```
+INPTDAT is freely-available under the ["GNU General Public License, version 2 or any later version"](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html) license in agreement with the DKAN licensing.
 
-Fix any issues with the build (if any) pushing commits. When everything is ok squash all your fix commits into one. Then:
+## Acknowledgements
 
-```bash
-# Checkout master
-git checkout master
-# Rebase changes from your branch
-git rebase rebuilding_dkan_profile
-# Push
-git push origin master
-# Delete integration branch
-git push origin :rebuilding_dkan_profile
-```
-
+The development of the data platform INPTDAT was funded by the Federal Ministry of Education and Research – BMBF under grant 16FDM005 and is further supported by BMBF under grant 16QK03A. The responsibility for the content of this website and the software lies with the author(s).
