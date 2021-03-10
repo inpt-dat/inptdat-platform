@@ -618,7 +618,14 @@ function file_load($fid) {
  */
 function file_save(stdClass $file) {
   $file->timestamp = REQUEST_TIME;
-  $file->filesize = filesize($file->uri);
+  // Check whether the file is remote
+  // If file remote, then do not use filesize() function
+  if (strpos($file->uri, 'http') !== false){
+    $file->filesize = 0; // just set to zero
+  } 
+  else { // use filesize() function
+    $file->filesize = filesize($file->uri);
+  }
 
   // Load the stored entity, if any.
   if (!empty($file->fid) && !isset($file->original)) {
@@ -647,6 +654,41 @@ function file_save(stdClass $file) {
   entity_get_controller('file')->resetCache(array($file->fid));
 
   return $file;
+}
+
+/**
+ * An additional (not original) function to get the size of a remote file
+ * without downloading the file first.
+ * https://gist.github.com/eyecatchup/f26300ffd7e50a92bc4d
+ */
+function get_remote_filesize($url, $useHead = true)
+{
+    $ch = curl_init($url);
+
+    curl_setopt_array($ch, array(
+        CURLOPT_RETURNTRANSFER  => 1,
+        CURLOPT_FOLLOWLOCATION  => 1,
+        CURLOPT_SSL_VERIFYPEER  => 0,
+        CURLOPT_NOBODY          => 1,
+    ));
+
+    if (false !== $useHead) {
+        curl_setopt($ch, CURLOPT_NOBODY, 1);
+    }
+
+    curl_exec($ch);
+    // content-length of download (in bytes), read from Content-Length: field
+    $clen = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+    curl_close($ch);
+
+    // cannot retrieve file size, return "-1"
+    if (!$clen) {
+        return -1;
+    }
+
+    $size = $clen;
+
+    return $size;
 }
 
 /**
