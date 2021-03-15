@@ -21,7 +21,7 @@ The installation of the data platform is analogous to the installation of DKAN. 
 
 ### Upgrading INPTDAT
 
-Follow the [DKAN basic upgrade](https://dkan.readthedocs.io/en/latest/introduction/maintaining.html#basic-upgrades) instructions to update INPTDAT. The INPTDAT specific code is maintained separated from the DKAN base code in the `sites` folder to avoid overwriting. Note that some incompatibilities may arise if the DKAN version is separately updated. Use this repository to benefit from updates tested for compatibility with the INPTDAT implementation.
+Follow the [DKAN basic upgrade](https://dkan.readthedocs.io/en/latest/introduction/maintaining.html#basic-upgrades) instructions to update INPTDAT. Most of the INPTDAT specific code is maintained separated from the DKAN base code in the `sites` folder to avoid overwriting. Use this repository as a code base to benefit from all plasma-specific developments and updates tested for compatibility with the INPTDAT implementation.
 
 ## License
 
