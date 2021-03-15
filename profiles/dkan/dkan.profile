@@ -29,7 +29,7 @@ function dkan_additional_setup() {
       array('dkan_change_block_titles', array()),
       array('dkan_markdown_setup', array()),
       array('dkan_enable_optional_module', array('dkan_permissions')),
-      array('dkan_enable_optional_module', array('dkan_default_topics')),
+      //array('dkan_enable_optional_module', array('dkan_default_topics')),
       array('dkan_enable_optional_module', array('dkan_dataset_search')),
       array('dkan_revert_feature',
         array(
@@ -71,7 +71,7 @@ function dkan_additional_setup() {
       // The module needs to be enabled after the revert on dkan_dataset_groups
       // is done. If not, a warning will appear during install about
       // og_group_ref not being present.
-      array('dkan_enable_optional_module', array('dkan_default_content')),
+      // array('dkan_enable_optional_module', array('dkan_default_content')),
       array('dkan_add_default_menu_links', array()),
       array('dkan_build_menu_links', array()),
       array('dkan_flush_image_styles', array()),
